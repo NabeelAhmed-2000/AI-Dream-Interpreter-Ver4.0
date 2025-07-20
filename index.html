@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dream Interpreter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>AI Dream Interpreter</h1>
+            <nav>
+                <a href="#" class="nav-link active" data-page="interpreter"><i data-feather="eye"></i> Interpreter</a>
+                <a href="#" class="nav-link" data-page="log"><i data-feather="book"></i> Dream Log</a>
+                <a href="#" class="nav-link" data-page="help"><i data-feather="help-circle"></i> Help & Guide</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Interpreter Page Content -->
+            <div id="interpreter" class="page active">
+                <div class="interpreter-layout">
+                    <div class="dream-input-section">
+                        <h2>Describe Your Dream</h2>
+                        <textarea id="dream-input"></textarea>
+			<div id="input-error-message" class="error-message"></div>
+			<div class="primary-actions-container">
+                            <button id="interpret-button">
+                                <span id="button-text">Interpret Dream</span>
+                                <div id="loader" class="loader" style="display: none;">
+                                    <div class="spinner"></div>
+                                    <span id="loader-text">Interpreting...</span>
+                                </div>
+                            </button>
+			    <button id="start-new-btn" class="secondary-action-btn hidden">
+			        <i data-feather="rotate-ccw"></i> Start New
+			    </button>
+		        </div>
+                    </div>
+                    <div id="results-container" class="results-section">
+                        <div class="results-content">
+                            <div class="result-item">
+                                <h3>Analysis</h3>
+                                <div id="interpretation-output" class="result-box"></div>
+                            </div>
+                            <div class="result-item">
+                                <h3>Mood Palette</h3>
+                                <div id="mood-palette-output" class="result-box"></div>
+                            </div>
+                             <div class="result-item">
+                                <h3>Key Symbols</h3>
+                                <div id="key-symbols-output" class="result-box"></div>
+                            </div>
+                            <div class="result-item" id="feedback-container">
+                                <div id="feedback-step-1">
+                                    <h3>Was this analysis helpful?</h3>
+                                    <div class="feedback-buttons">
+                                        <button id="feedback-yes-btn"><i data-feather="thumbs-up"></i> Yes</button>
+                                        <button id="feedback-no-btn"><i data-feather="thumbs-down"></i> No</button>
+                                    </div>
+                                </div>
+                                <div id="feedback-step-2-yes" class="feedback-step" style="display: none;">
+                                    <h3>Great! How would you rate it?</h3>
+                                    <div class="star-rating">
+                                        <span class="star" data-value="1" data-tooltip="1 - Not helpful"><i data-feather="star"></i></span>
+                                        <span class="star" data-value="2" data-tooltip="2 - Somewhat helpful"><i data-feather="star"></i></span>
+                                        <span class="star" data-value="3" data-tooltip="3 - Helpful"><i data-feather="star"></i></span>
+                                        <span class="star" data-value="4" data-tooltip="4 - Very helpful"><i data-feather="star"></i></span>
+                                        <span class="star" data-value="5" data-tooltip="5 - Excellent"><i data-feather="star"></i></span>
+                                    </div>
+                                </div>
+                                <div id="feedback-step-2-no" class="feedback-step" style="display: none;">
+                                    <h3>Sorry to hear that. What could be improved?</h3>
+                                    <div class="feedback-choices">
+                                        <button class="feedback-choice-btn" data-feedback="Interpretation">Interpretation</button>
+                                        <button class="feedback-choice-btn" data-feedback="Mood">Mood Analysis</button>
+                                        <button class="feedback-choice-btn" data-feedback="Symbols">Symbols</button>
+                                    </div>
+                                </div>
+                                <div id="feedback-thanks" class="feedback-thanks"></div>
+                            </div>
+                        </div>
+                        <div class="action-buttons-container"></div>
+                        <div id="feedback-log-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="log" class="page">
+                <h2>Saved Dream Interpretations</h2>
+                <ul id="dream-log-list">
+                    <li class="log-placeholder">Your saved dreams will appear here.</li>
+                </ul>
+            </div>
+
+            <div id="help" class="page">
+                 <h2>Interpretation Guide</h2>
+                <div class="guide-section">
+                    <h4>Understanding Moods & Colors</h4>
+                    <p>The mood palette visually represents the core emotion of the dream interpretation. Here are the themes this prototype recognizes:</p>
+                    <div class="mood-guide">
+                        <div><span class="color-swatch" style="background: #87CEEB;"></span> <strong>Freedom:</strong> Light, airy colors suggesting liberation and personal power.</div>
+                        <div><span class="color-swatch" style="background: #696969;"></span> <strong>Anxious:</strong> Muted, grey tones representing avoidance, confusion, or unresolved stress.</div>
+                        <div><span class="color-swatch" style="background: #4682B4;"></span> <strong>Calm:</strong> Cool, stable blues that reflect peace, emotional balance, and tranquility.</div>
+                        <div><span class="color-swatch" style="background: #E74C3C;"></span> <strong>Insecure:</strong> Unsettling reds and oranges indicating vulnerability and self-doubt.</div>
+                        <div><span class="color-swatch" style="background: #F1C40F;"></span> <strong>Optimistic:</strong> Bright, warm yellows associated with hope, fortune, and positive outlooks.</div>
+                        <div><span class="color-swatch" style="background: #9370DB;"></span> <strong>Mysterious:</strong> Deep, introspective purples for themes that are abstract or not clearly defined.</div>
+                    </div>
+                </div>
+                <h2>About This Application</h2>
+                <div class="guide-section">
+                    <h4>How to Use</h4>
+                    <p>Navigate to the <strong>Interpreter</strong> tab, describe your dream, and receive a multi-faceted analysis. You can then save interesting interpretations to your <strong>Dream Log</strong> for the session.</p>
+                </div>
+                <div class="guide-section">
+                    <h4>About the "AI"</h4>
+                    <p>This application is a prototype developed for a university course project. The "AI" is a client-side simulation designed to demonstrate user interface and interaction design principles. It currently recognizes keywords to provide thematic results. It does not provide real psychological analysis.</p>
+                </div>
+            </div>
+        </main>
+        <footer class="app-footer">
+            <p>&copy; 2025 AI Dream Interpreter. A Project by Nabeel Ahmed.</p>
+        </footer>
+    </div> <div id="confirmation-modal" class="modal-overlay">
+        <div class="modal-content">
+	    <h4>Confirm Action</h4>
+	    <p>A new interpretation will replace your existing results. Are you sure you want to continue?</p>
+	    <div class="modal-actions">
+	        <button id="modal-cancel-btn" class="modal-btn secondary">Cancel</button>
+	        <button id="modal-confirm-btn" class="modal-btn primary">Yes, Replace</button>
+	    </div>
+        </div>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+    <script src="script.js"></script>
+</body>
+</html>
